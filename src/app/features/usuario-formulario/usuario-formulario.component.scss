@@ -1,0 +1,10 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

@@ -1,0 +1,38 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <label>
+    Nombre:
+    <input formControlName="nombre" />
+    <span *ngIf="userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched">
+      Mínimo 3 caracteres
+    </span>
+  </label>
+
+  <label>
+    Apellido:
+    <input formControlName="apellido" />
+    <span *ngIf="userForm.get('apellido')?.invalid && userForm.get('apellido')?.touched">
+      Mínimo 3 caracteres
+    </span>
+  </label>
+
+  <label>
+    Email:
+    <input formControlName="email" />
+    <span *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      Email inválido
+    </span>
+  </label>
+
+  <label>
+    Rol:
+    <select formControlName="rol">
+      <option value="">Seleccionar rol</option>
+      <option value="Admin">Admin</option>
+      <option value="User">User</option>
+    </select>
+  </label>
+
+  <button type="submit" [disabled]="userForm.invalid">
+    {{ userToEdit ? 'Actualizar Usuario' : 'Agregar Usuario' }}
+  </button>
+</form>

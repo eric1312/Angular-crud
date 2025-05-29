@@ -1,0 +1,26 @@
+<!-- Filtros -->
+<div class="filtros">
+  <input type="text" placeholder="Buscar por nombre o apellido" (input)="onBuscar($event)" />
+  <select (change)="onCambiarRol($event)">
+    <option value="">Todos</option>
+    <option value="Admin">Admin</option>
+    <option value="User">User</option>
+  </select>
+</div>
+
+<!-- Spinner -->
+<div *ngIf="loading$ | async" class="spinner">Cargando usuarios...</div>
+
+<!-- Listado de usuarios -->
+<ul *ngIf="!(loading$ | async)">
+  <li *ngFor="let user of usuarios$ | async">
+    <strong>{{ user.nombre }} {{ user.apellido }}</strong> - {{ user.email }} ({{ user.rol || 'Sin rol' }})
+  </li>
+</ul>
+
+<!-- Paginación -->
+<div class="paginacion">
+  <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1">Anterior</button>
+  <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+  <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual >= totalPaginas">Siguiente</button>
+</div>
