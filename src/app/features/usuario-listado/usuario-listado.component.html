@@ -19,8 +19,9 @@
 </ul>
 
 <!-- Paginación -->
-<div class="paginacion">
-  <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1">Anterior</button>
-  <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
-  <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual >= totalPaginas">Siguiente</button>
+<div class="pagination">
+  <button (click)="anterior()" [disabled]="(paginaActual$!| async) === 1">Anterior</button>
+  Página {{ paginaActual$! | async }} de {{ totalPaginas$! | async }}
+  <button (click)="siguiente()" [disabled]="(paginaActual$! | async) === (totalPaginas$! | async)">Siguiente</button>
 </div>
+
